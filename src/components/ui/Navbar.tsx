@@ -1,8 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
+
+const logo = [
+  { src: "/logo.png", alt: "AAT logo" }
+];
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,20 +33,19 @@ export function Navbar() {
           className="flex items-center gap-2"
           onClick={() => setMenuOpen(false)}
         >
-          <Image
-            src="/next.svg"
-            alt="AAT Logo"
-            width={scrolled ? 28 : 36}
-            height={scrolled ? 28 : 36}
-            className="object-contain transition-all duration-300"
+      <div className="flex absolute left-4 top-1/2 -translate-y-1/2">
+        {[...logo].map((logo, index) => (
+          <img
+            key={index}
+            src={logo.src}
+            alt={logo.alt}
+            width={80} 
+            height={20}
+            className="object-contain opacity-90 hover:opacity-100 transition-opacity"
+            style={{ maxHeight: "60px" }}
           />
-          <span
-            className={`text-base font-semibold text-white whitespace-nowrap transition-all duration-300 ${
-              scrolled ? "text-sm" : "text-lg"
-            }`}
-          >
-            AAT Business Solutions
-          </span>
+        ))}
+      </div>
         </Link>
 
         <nav className="hidden md:flex space-x-8 text-white font-medium">
